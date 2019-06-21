@@ -9,3 +9,9 @@ In this project, I made use of Python to explore data related to bike share syst
 Chicago, New York City, and Washington.
 I wrote code to import the data and answer interesting questions about it by computing descriptive statistics.
 I also wrote a script that takes in raw input to create an interactive experience in the terminal to present these statistics.
+
+### Files used
+190527_Project2_DAND_US_Bikeshare.py
+chicago.csv
+new_york_city.csv
+washington.csv
