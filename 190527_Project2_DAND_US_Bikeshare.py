@@ -280,17 +280,7 @@ def user_stats(df):
     except:
       print("\n\nSomething went wrong while searching for gender types.")
 
-    labels ='male', 'female'
-    try:
-        counts_gender = df['Gender'].value_counts()
-        colors = ["#1f77b4", 'lightskyblue']
-        explode = (0.1, 0)
-        plt.pie(counts_gender, labels=list(labels), explode=explode, colors=colors,
-        autopct='%1.1f%%', shadow=True, startangle=60)
-        plt.title("Gender Distribution in selected months / days")
-        plt.show()
-    except KeyError:
-      print("\n\nGender:\nNo gender data available.")
+    
 
     # Display earliest, most recent, and most common year of birth
 
