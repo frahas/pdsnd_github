@@ -178,7 +178,7 @@ def load_choice(city, month, day):
 
     # set the filter to weekday as chosen
         # build a new data frame
-        
+
     if day != 'all':
         df = df[df['day_of_week'] == day.title()]
 
@@ -198,19 +198,6 @@ def time_stats(df):
 
     month_group = df.groupby('month')['Start Time'].count()
     print("Most common month (number of starts):\n\n" + calendar.month_name[int(month_group.sort_values(ascending = True).index[-1])])
-    print('\n\nPlease see the bar charts for your selected month(s) below:\n')
-
-    ax=df.groupby('month')['Start Time'].nunique().plot(kind='bar', stacked=True, colormap='Blues_r')
-    ax.set_title('Number of starts in selected month(s)')
-    ax.set_xlabel('Month')
-    ax.set_ylabel('Starts')
-    plt.show()
-
-    ax=df.groupby('month')['Trip Duration'].nunique().plot(kind='bar', stacked=True, colormap='Blues_r')
-    ax.set_title('Trip duration in selected month(s)')
-    ax.set_xlabel('Month')
-    ax.set_ylabel('Total trip duration')
-    plt.show()
 
     most_common_weekday = df['day_of_week'].mode()[0]
     print('\n\nMost common day of the week:\n')
@@ -234,7 +221,7 @@ def station_stats(df):
     start_time = time.time()
 
     # display most commonly used start station
-   
+
     most_common_start_station=df['Start Station'].value_counts()[df['Start Station'].value_counts() == df['Start Station'].value_counts().max()]
     print('Most common start station:\n\n', most_common_start_station)
 
@@ -243,10 +230,10 @@ def station_stats(df):
     print('\n\nMost common end station:\n\n', most_common_end_station)
 
     # display most frequent combination of start station and end station
-    
-    most_common_combination=df.groupby(['Start Station', 'End Station']).size().nlargest(3).sort_values(ascending=False) 
+
+    most_common_combination=df.groupby(['Start Station', 'End Station']).size().nlargest(3).sort_values(ascending=False)
     print('\n\nMost common three combinations of start station and end station:\n\n', most_common_combination)
-            
+
     print('\n(This calculation took:', '{:0,.2f}'.format((time.time() - start_time)), 'seconds.)')
     print('_'*70)
 
@@ -278,14 +265,14 @@ def user_stats(df):
     start_time = time.time()
 
     # Display counts of user types
-    
-    user_type = df.groupby('User Type')['User Type'].count().sort_values(ascending=False) 
+
+    user_type = df.groupby('User Type')['User Type'].count().sort_values(ascending=False)
     print('\n',user_type)
 
     # Display counts of gender
     try:
       print("\n\n")
-      gender_type = df.groupby('Gender')['Gender'].count().sort_values(ascending=False) 
+      gender_type = df.groupby('Gender')['Gender'].count().sort_values(ascending=False)
       print(gender_type)
       print('\n\n')
     except KeyError:
@@ -293,17 +280,7 @@ def user_stats(df):
     except:
       print("\n\nSomething went wrong while searching for gender types.")
 
-    labels ='male', 'female'
-    try:
-        counts_gender = df['Gender'].value_counts()
-        colors = ["#1f77b4", 'lightskyblue']
-        explode = (0.1, 0)
-        plt.pie(counts_gender, labels=list(labels), explode=explode, colors=colors,
-        autopct='%1.1f%%', shadow=True, startangle=60)
-        plt.title("Gender Distribution in selected months / days")
-        plt.show()
-    except KeyError:
-      print("\n\nGender:\nNo gender data available.")
+    
 
     # Display earliest, most recent, and most common year of birth
 
@@ -325,7 +302,7 @@ def user_stats(df):
     except:
       print("\n\nSomething went wrong while searching for years of birth.")
 
-    try:   
+    try:
       most_common_birth_year=df['Birth Year'].value_counts().idxmax()
       print('\n\nMost common birth year:\n')
       print('{:04.0f}'.format(most_common_birth_year))
@@ -354,7 +331,7 @@ def show_dataframe(df):
 
 
 def main():
-    
+
     while True:
         city = choose_city()
         month = choose_month()
